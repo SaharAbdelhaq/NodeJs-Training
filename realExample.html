@@ -1,0 +1,25 @@
+<html>
+<head></head>
+<body>
+<label id="rate"></label>
+<button id="clickme">check rate</button>
+<script>
+    async function fetchExchangeRate() {
+        const resp = await fetch(
+            "https://api.exchangerate.host/convert?from=USD&to=ILS&amount=1"
+        );
+        const responseObject = await resp.json();
+        const rate = responseObject.result;
+        setRateData(rate);
+    }
+    function setRateData (rate) {
+        document.getElementById('rate').innerHTML = rate;
+    }
+    function buttonClick() {
+        fetchExchangeRate();
+    }
+    const button = document.getElementById("clickme");
+    button.addEventListener("click", buttonClick);
+</script>
+</body>
+</html>
